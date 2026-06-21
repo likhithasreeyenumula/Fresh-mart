@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruits</title>
+<style>
+body {font-family: Arial, sans-serif;background-color: hsl(42, 99%, 66%);margin: 0;padding: 0;}
+header{background-image: url('images/bgfruits.jpg');background-size: cover;background-repeat: no-repeat;background-position: center;margin: 0;color: white;text-align: center;padding: 2rem;}
+h1 {margin: 0;font-size: 3rem;}
+p {font-size: 1.2rem;}
+nav {background-color: #333;color: white;padding: 15px;text-align: center;}
+nav a {color: white;text-decoration: none;margin: 0 15px;font-size: 16px;}
+nav a:hover {text-decoration: underline;}
+.search-bar {display: inline-block;margin-top: 10px;}
+.search-bar input {padding: 8px;font-size: 16px;width: 250px;border-radius: 4px;border: 1px solid #ccc;}
+.cart-icon {font-size: 24px;cursor: pointer;padding: 10px;color: white;}
+.container {display: grid;grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));gap: 20px;padding: 20px;}
+.card {background-color: white;border: 1px solid #ddd;border-radius: 8px;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);overflow: hidden;text-align: center;padding: 15px;}
+.card img {width: 100%;height: 200px;object-fit: cover;border-bottom: 1px solid #ddd;}
+.card h3 {margin: 10px 0;color: #333;}
+.card p {color: #666;font-size: 14px;}
+.card .price {font-weight: bold;color: #ff5722;margin-top: 5px;}
+.card button {background-color: #ff5722;color: white;padding: 8px;border: none;cursor: pointer;border-radius: 4px;margin-top: 10px;}
+.card button:hover {background-color: #ff3d00;}
+footer {text-align: center;background-color: #f1f1f1;padding: 1rem;margin-top: 20px;}
+</style></head>
+<body><header>
+        <h1>Fruits</h1><p>Fresh and delicious fruits just for you</p></header><nav>
+        <a href="index.html">Home</a><a href="fruits.html">Fruits</a><a href="vegetables.html">Vegetables</a>
+        <a href="dairy.html">Dairy Products</a><a href="snacks.html">Snacks</a>
+        <div class="search-bar"><input type="text" id="searchInput" placeholder="Search for fruits..." onkeyup="searchProducts()">
+        </div><div class="cart-icon" onclick="navigateToCart()">🛒 Cart</div></nav><div class="container">
+        <div class="card" data-name="Apple"><img src="images/apple.jpg" alt="Apple"><h3>Apple</h3>
+        <p>Fresh and crunchy apples full of flavor.</p><div class="product-details">
+        <p><strong>Cost:</strong> $1.99</p><button class="add-to-cart" onclick="addToCart('Apple', 1.99)">Add to Cart</button></div></div>
+        <div class="card" data-name="Banana"><img src="images/banana.jpg" alt="Banana">
+        <h3>Banana</h3><p>Sweet and nutritious bananas.</p>
+        <div class="product-details"><p><strong>Cost:</strong> $1.29</p>
+        <button class="add-to-cart" onclick="addToCart('Banana', 1.29)">Add to Cart</button></div></div>
+        <div class="card" data-name="Orange"><img src="images/orange.jpg" alt="Orange"><h3>Orange</h3>
+        <p>Juicy and refreshing oranges.</p><div class="product-details">
+        <p><strong>Cost:</strong> $2.49</p>
+        <button class="add-to-cart" onclick="addToCart('Orange', 2.49)">Add to Cart</button></div></div>
+        <div class="card" data-name="Grapes"><img src="images/grapes.jpg" alt="Grapes">
+        <h3>Grapes</h3><p>Sweet and tangy grapes for a healthy snack.</p>
+        <div class="product-details"><p><strong>Cost:</strong> $3.49</p>
+        <button class="add-to-cart" onclick="addToCart('Grapes', 3.49)">Add to Cart</button></div></div>
+        <div class="card" data-name="Mango"><img src="images/mango.jpg" alt="Mango">
+        <h3>Mango</h3><p>Fresh and juicy mangoes, the king of fruits.</p><div class="product-details">
+        <p><strong>Cost:</strong> $2.99</p><button class="add-to-cart" onclick="addToCart('Mango', 2.99)">Add to Cart</button></div></div>
+        <div class="card" data-name="Watermelon"><img src="images/watermelon.jpg" alt="Watermelon">
+        <h3>Watermelon</h3><p>Refreshing watermelon, perfect for summer.</p>
+        <div class="product-details"><p><strong>Cost:</strong> $5.99</p>
+        <button class="add-to-cart" onclick="addToCart('Watermelon', 5.99)">Add to Cart</button></div></div>
+        <div class="card" data-name="Pomegranate"><img src="images/pomegranate.jpg" alt="Pomegranate">
+        <h3>Pomegranate</h3><p>Juicy and vibrant pomegranate seeds for a healthy snack.</p>
+        <div class="product-details"><p><strong>Cost:</strong> $4.99</p>
+        <button class="add-to-cart" onclick="addToCart('Pomegranate', 4.99)">Add to Cart</button></div></div>
+        <div class="card" data-name="Kiwi"><img src="images/kiwi.jpg" alt="Kiwi">
+        <h3>Kiwi</h3><p>Tangy and refreshing kiwis full of nutrients.</p>
+        <div class="product-details"><p><strong>Cost:</strong> $3.49</p>
+        <button class="add-to-cart" onclick="addToCart('Kiwi', 3.49)">Add to Cart</button></div></div>
+        <div class="card" data-name="Pineapple"><img src="images/pineapple.jpg" alt="Pineapple">
+        <h3>Pineapple</h3><p>Sweet and tropical pineapple slices.</p>
+        <div class="product-details"><p><strong>Cost:</strong> $4.29</p>
+        <button class="add-to-cart" onclick="addToCart('Pineapple', 4.29)">Add to Cart</button></div></div>
+        <div class="card" data-name="Dragon Fruit"><img src="images/dragon.jpg" alt="Dragon Fruit">
+        <h3>Dragon Fruit</h3><p>Exotic and colorful dragon fruit, rich in antioxidants.</p>
+        <div class="product-details"><p><strong>Cost:</strong> $5.99</p>
+        <button class="add-to-cart" onclick="addToCart('Dragon Fruit', 5.99)">Add to Cart</button></div></div>
+        <div class="card" data-name="Papaya"><img src="images/papaya.jpg" alt="Papaya">
+        <h3>Papaya</h3><p>Sweet and soft papaya, perfect for digestion.</p>
+        <div class="product-details"><p><strong>Cost:</strong> $3.99</p>
+        <button class="add-to-cart" onclick="addToCart('Papaya', 3.99)">Add to Cart</button></div></div>
+        <div class="card" data-name="Strawberry"><img src="images/strawberry.jpg" alt="Strawberry">
+        <h3>Strawberry</h3><p>Fresh and sweet strawberries, perfect for desserts.</p>
+        <div class="product-details"><p><strong>Cost:</strong> $4.49</p>
+        <button class="add-to-cart" onclick="addToCart('Strawberry', 4.49)">Add to Cart</button></div></div></div>
+        <footer><p>&copy; 2024 Fruit Store</p></footer><script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        function addToCart(name, price) {cart.push({ name, price });
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert(name + ' has been added to your cart!');}
+        function navigateToCart() {window.location.href = 'cart.html';}
+        function searchProducts() {let input = document.getElementById('searchInput').value.toLowerCase();
+        let products = document.querySelectorAll('.card');
+        products.forEach(function (product) {let name = product.getAttribute('data-name').toLowerCase();
+        if (name.includes(input)) {product.style.display = 'block';} else {
+        product.style.display = 'none';}});}</script></body></html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshMart - Your Grocery Store</title>
+    <style>
+        * {box-sizing: border-box;margin: 0;padding: 0;}
+        body {font-family: Arial, sans-serif;line-height: 1.6;background-color: rgba(146, 255, 208, 0.778);}
+        header {display: flex;justify-content: space-between;padding: 20px;background-color: rgba(51, 51, 51, 0.7);color: white;
+            position: relative;z-index: 10;}
+        .logo {font-size: 2rem;font-weight: bold;}
+        .navbar a {margin-left: 20px;color: white;text-decoration: none;}
+        .navbar a:hover {text-decoration: underline;}
+        .header-actions input {padding: 8px;font-size: 1rem;border-radius: 5px;border: none;}
+        .original-button {display: flex;align-items: center;justify-content: center;line-height: 1;text-decoration: none;color: #ffffff;
+  font-size: 18px;border-radius: 0px;width: 200px;height: 40px;font-weight: bold;border: 2px solid #ffffff;transition: 0.3s;
+  box-shadow: 0px 4px 10px -2px rgba(0, 0, 0, 0.3);background-image: linear-gradient(90deg, rgba(57, 210, 248, 1), rgba(48, 97, 96, 1));}
+.original-button:hover {box-shadow: 0 0 rgba(0, 0, 0, .3);}
+.original1-button {display: flex;align-items: center;justify-content: center;line-height: 1;text-decoration: none;color: #ffffff;
+  font-size: 18px;border-radius: 0px;width: 200px;height: 40px;font-weight: bold;border: 2px solid #ffffff;transition: 0.3s;
+  box-shadow: 0px 4px 10px -2px rgba(0, 0, 0, 0.3);background-image: linear-gradient(90deg, rgba(248, 132, 57, 1), rgba(229, 11, 11, 1));}
+.original1-button:hover {box-shadow: 0 0 rgba(0, 0, 0, .3);}
+.original2-button {display: flex;align-items: center;justify-content: center;line-height: 1;text-decoration: none;color: #ffffff;
+    font-size: 18px;border-radius: 0px;width: 200px;height: 40px;font-weight: bold;border: 2px solid #ffffff;transition: 0.3s;
+box-shadow: 0px 4px 10px -2px rgba(0, 0, 0, 0.3);background-image: linear-gradient(90deg, rgba(80, 248, 57, 1), rgba(253, 255, 7, 1));}
+.original2-button:hover {box-shadow: 0 0 rgba(0, 0, 0, .3);}
+.original3-button{display: flex;align-items: center;justify-content: center;line-height: 1;text-decoration: none;color: #ffffff;
+  font-size: 18px;border-radius: 5px;width: 200px;height: 40px;font-weight: bold;transition: 0.3s;
+  background-image: linear-gradient(90deg, rgba(247, 238, 12, 1) 5%, rgba(255, 151, 29, 1) 26%, rgba(233, 94, 52, 1) 45%, rgba(154, 39, 238, 1) 64%, rgba(35, 102, 247, 1) 81%, rgba(88, 139, 250, 1) 95%);}
+.original3-button:hover {opacity: 0.5;}
+.cart-btn {padding: 10px 15px;background-color: #28a745;color: white;border: none;border-radius: 5px;cursor: pointer;}
+.hero{position: relative;height: 50vh;display: flex;justify-content: center;align-items: center;overflow: hidden;}
+.hero video{position: absolute;top: 0;left: 0;width: 100%;height: 100%;object-fit: cover;z-index: -1;}
+.hero h1, .hero p, .cta-btn {position: relative;z-index: 10;color: white;text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);}
+.hero h1 {font-size: 3rem;margin-bottom: 20px;}
+.hero p {font-size: 1.5rem;margin-bottom: 30px;}
+.cta-btn {padding: 12px 25px;background-color: #28a745;color: white;border: none;border-radius: 5px;cursor: pointer;}
+.categories {
+            padding: 50px 20px;
+            text-align: center;
+            
+        }
+
+        .categories h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .category-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            
+        }
+
+        .category-item {
+            width: 200px;
+            padding: 15px;
+            background-color: #f4f4f4;
+            margin: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            
+        }
+
+        .about-products {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #f9f9f9;
+            background-color: rgb(135, 240, 187);
+        }
+
+        .about-products h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .product-details {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .product-item {
+            width: 250px;
+            padding: 20px;
+            margin: 10px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .product-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .product-item h3 {
+            margin-top: 10px;
+            font-size: 1.5rem;
+        }
+
+        .product-item p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .footer {
+            position: relative;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            z-index: 1;
+        }
+
+        .footer video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer p {
+            margin: 10px 0;
+        }
+
+        .social-links a {
+            margin: 10px;
+        }
+
+        .social-links img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .footer a {
+            color: #f0f0f0;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .categories h2 {
+                font-size: 2rem;
+            }
+
+            .category-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .product-details {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .product-item {
+                width: 80%;
+                margin: 10px 0;
+            }
+        }
+        
+.offers {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 20px;
+    background-color: rgba(240, 255, 244, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+.offers .content {
+    
+    padding-right: 20px; 
+}
+
+.offers .content h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.offers .content p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.offers .image {
+    
+    text-align: center; 
+}
+
+.offers .image img {
+    width: 100%;
+    max-width: 400px; 
+    height: auto; 
+    border-radius: 10px;
+    object-fit: cover; 
+}
+
+.ratings-reviews {
+    padding: 50px 20px;
+    background: linear-gradient(90deg, #ff0000,#ff8c00, #fffb00,#62ff00,#00fff7,#0026ff,#bb00ff,#ff0099);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;     
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+.ratings-reviews h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.review-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.review-item {
+    width: 250px;
+    padding: 20px;
+    margin: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+.review-item h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.review-item p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.review-form {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.review-form h3 {
+    margin-bottom: 20px;
+}
+
+.review-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.review-form input, 
+.review-form select, 
+.review-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.review-form button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.review-form button:hover {
+    background-color: #218838;
+}
+
+</style>
+</head>
+<body>
+    <section class="hero">
+        <video autoplay muted loop>
+            <source src="images/bgv1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div>
+            <h1>Welcome to FreshMart</h1>
+            <p>Your one-stop shop for fresh and organic groceries!</p>
+            <a href="liandsi.html" class="cta-btn">Start Shopping</a>
+        </div>
+    </section>
+    <header>
+        <div class="logo">FreshMart</div>
+        <nav class="navbar">
+            <a href="liandsi.html">Sign-In</a>
+            <a href="liandsi.html">Log-In</a>            
+        </nav>        
+    </header>
+    <section class="categories">
+        <h2>Shop by Category</h2>
+        <div class="category-container">            
+            <a href="#" class="original1-button">Home</a>
+            <a href="products.html" class="original2-button">Products</a>
+            <a href="liandsi.html" class="original-button">Deals</a>
+            <a href="contact.html" class="original3-button">Contact Us</a>
+        </div>
+    </section>
+    <section class="about-products">
+        <h2>What We Offer</h2>
+        <div class="product-details">
+            <div class="product-item">
+                <img src="images/fruits.jpeg" alt="Fruits">
+                <h3>Fresh Fruits</h3>
+                <p>We provide a wide range of fresh and organic fruits sourced directly from farms.</p>
+            </div>
+            <div class="product-item">
+                <img src="images/vegetables.jpeg" alt="Vegetables">
+                <h3>Organic Vegetables</h3>
+                <p>Discover our variety of organic, pesticide-free vegetables perfect for healthy meals.</p>
+            </div>
+            <div class="product-item">
+                <img src="images/dairy.jpeg" alt="Dairy">
+                <h3>Quality Dairy Products</h3>
+                <p>Choose from milk, cheese, butter, and other dairy products from trusted suppliers.</p>
+            </div>
+            <div class="product-item">
+                <img src="images/snacks.jpeg" alt="Snacks">
+                <h3>Delicious Snacks</h3>
+                <p>Find a selection of tasty snacks and treats for every occasion.</p>
+            </div>
+        </div>
+    </section>
+        <section class="offers">
+        <div class="content">
+            <h2>Special Offers on Fruits</h2>
+            <p>Get the freshest fruits at the best prices. Limited time offers available now!</p>
+        </div>
+        <div class="image">
+            <img src="images/fruits.jpeg" alt="Fruits" />
+        </div>
+    </section>
+    <section class="offers">        
+            <div class="image">
+                <img src="images/vegetables.jpeg" alt="Vegetables">
+            </div>
+            <div class="content">
+            <h2>Special Offers on Vegetables</h2>
+            <p>Get the freshest vegetables at the best prices. Limited time offers available now!</p>
+        </div>        
+    </section>
+    <section class="offers">
+        <div class="content">
+            <h2>Special Offers on Diary</h2>
+            <p>Get the freshest milk and many at the best prices. Limited time offers available now!</p>
+        </div>
+        <div class="image">
+            <img src="images/dairy.jpeg" alt="Fruits" />
+        </div>
+    </section>
+    <section class="offers">        
+            <div class="image">
+                <img src="images/snacks.jpeg" alt="Snacks">
+            </div>
+            <div class="content">
+            <h2>Special Offers on Snacks</h2>
+            <p>Get the tasty snacks at the best prices. Limited time offers available now!</p>
+        </div>        
+    </section>    
+    <section class="ratings-reviews">
+        <h2>Customer Ratings and Reviews</h2>
+        <div class="review-container">
+            <div class="review-item">
+                <h3>John Doe</h3>
+                <p><strong>Rating:</strong> ⭐⭐⭐⭐⭐</p>
+                <p>"Amazing quality! The fruits were fresh and delicious."</p>
+            </div>
+            <div class="review-item">
+                <h3>Jane Smith</h3>
+                <p><strong>Rating:</strong> ⭐⭐⭐⭐☆</p>
+                <p>"Great vegetables, but the delivery took a bit longer than expected."</p>
+            </div>
+            <div class="review-item">
+                <h3>Michael Brown</h3>
+                <p><strong>Rating:</strong> ⭐⭐⭐⭐☆</p>
+                <p>"I love their dairy products! Highly recommended."</p>
+            </div>
+        </div>        
+    </section>
+    <footer class="footer">
+        <video autoplay muted loop>
+            <source src="images/bgv1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="footer-content">
+            <p>&copy; 2024 FreshMart. All rights reserved.</p>
+        <div class="social-links">
+            <h2>Contact us</h2>
+    <p>Copyright 2024 House Rentals and Tenant Management System. All rights reserved.</p>
+    <p>Contact Us: <a href="Team10:houserent@gmail.com">houserent@gmail.com</a></p>
+    <p>Phone: 1234506789</p>
+    <p>Address: Pasuputhota, Madhuranagar, Vij</p>
+    <p>Follow us on social media:</p>
+            <div class="social-links">
+                <a href="#"><img src="images/facebook.jpg" alt="Facebook"></a>
+                <a href="#"><img src="images/instagram.jpg" alt="Instagram"></a>
+                <a href="#"><img src="images/twitter.jpg" alt="Twitter"></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

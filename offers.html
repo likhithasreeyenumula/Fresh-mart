@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shop exclusive offers on fresh fruits, vegetables, dairy products, and snacks. Save big with our special deals!">
+    <meta name="keywords" content="grocery, offers, fruits, vegetables, dairy, snacks, discounts">
+    <title>Special Offers</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffffb7;
+            color: #333;
+        }
+        header {
+            background: url('images/bgi5.jpg') no-repeat center center/cover;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 0.5rem;
+        }
+        nav input {
+            padding: 0.5rem;
+            margin-right: 1rem;
+            border: none;
+            border-radius: 5px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 1rem;
+            font-size: 1rem;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        nav a:hover {
+            background-color: #575757;
+            transform: scale(1.1);
+        }
+        .banner {
+            text-align: center;
+            padding: 2.5rem;
+            background: linear-gradient(90deg, #ff0000,#ff8c00, #fffb00,#62ff00,#00fff7,#0026ff,#bb00ff,#ff0099);
+            color: white;
+            position: relative;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .banner h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        .banner p {
+            font-size: 1.5rem;
+            margin: 0.5rem 0;
+        }
+        .countdown {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .offers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+            background-color: #f8e700;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .offer {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+            text-align: center;
+            background: url('images/bgi4.jpg') no-repeat center center/cover;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .offer:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        .offer img {
+            width: 100%; 
+            height: 200px; 
+            object-fit: cover; 
+            border-bottom: 1px solid #ddd;
+        }
+        .offer h3 {
+            margin: 0.8rem 0;
+            font-size: 1.8rem;
+            color: #ff8c00;
+        }
+        .offer p {
+            margin: 0.5rem;
+            color: #555;
+        }
+        .offer .price {
+            font-weight: bold;
+            color: #4CAF50;
+            font-size: 1.2 rem;
+        }
+        .offer button {
+            background: linear-gradient(90deg, #ff8c00, #ffa500);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .offer button:hover {
+            background: linear-gradient(90deg, #ffa500, #ff8c00);
+            transform: scale(1.1);
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1.2rem 0;
+            margin-top: 2rem;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="images/offerlogo.gif" alt="Grocery Store Logo">
+    </header>
+    <nav>
+        <input type="text" id="searchInput" placeholder="Search offers..." onkeyup="searchProducts()">
+        <a href="index.html">Home</a>
+        <a href="fruits.html">Fruits</a>
+        <a href="vegetables.html">Vegetables</a>
+        <a href="dairy.html">Dairy Products</a>
+        <a href="snacks.html">Snacks</a>
+    </nav>
+    <div class="banner">
+        <h1>Shop & Save Big!</h1>
+        <p>Exclusive deals just for you.</p>
+        <div class="countdown">Hurry! Ends in 2 days, 4 hours</div>
+    </div>
+    <section class="offers">
+        <div class="offer">
+            <img src="images/apple.jpg" alt="Fresh Apples">
+            <h3>Fresh Apples</h3>
+            <p class="price">$2.99/lb <del>$3.99/lb</del></p>
+            <button onclick="addToCart('Fresh Apples', 2.99)">Buy Now</button>
+        </div>
+        <div class="offer">
+            <img src="images/milk.jpg" alt="Fresh Milk">
+            <h3>Fresh Milk</h3>
+            <p class="price">$1.49 <del>$2.49</del></p>
+            <button onclick="addToCart('Fresh Milk', 1.49)">Buy Now</button>
+        </div>
+        <div class="offer">
+            <img src="images/chips.jpg" alt="Chips">
+            <h3>Chips</h3>
+            <p class="price">$4.99 <del>$5.99</del></p>
+            <button onclick="addToCart('Chips', 4.99)">Buy Now</button>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 Grocery Store. All rights reserved.</p>
+    </footer>
+    <script>
+        // Retrieve cart from localStorage or initialize an empty cart
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Function to add items to the cart
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(name + ' has been added to your cart!');
+        }
+
+        // Function to navigate to the cart page
+        function navigateToCart() {
+            window.location.href = 'cart.html';
+        }
+
+        // Function to filter products based on search input
+        function searchProducts() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let products = document.querySelectorAll('.offer');
+            products.forEach(function (product) {
+                let name = product.querySelector('h3').textContent.toLowerCase();
+                if (name.includes(input)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

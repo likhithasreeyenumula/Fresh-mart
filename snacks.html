@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snacks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: hsl(42, 99%, 66%);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-image: url('images/bgsnacks.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        h1 {
+            margin: 0;
+            font-size: 3rem;
+        }
+        p {
+            font-size: 1.2rem;
+        }
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .search-bar {
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .search-bar input {
+            padding: 8px;
+            font-size: 16px;
+            width: 250px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .cart-icon {
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px;
+            color: white;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            padding: 15px;
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #ddd;
+        }
+        .card h3 {
+            margin: 10px 0;
+            color: #333;
+        }
+        .card p {
+            color: #666;
+            font-size: 14px;
+        }
+        .card .price {
+            font-weight: bold;
+            color: #ff5722;
+            margin-top: 5px;
+        }
+        .card button {
+            background-color: #ff5722;
+            color: white;
+            padding: 8px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .card button:hover {
+            background-color: #ff3d00;
+        }
+        footer {
+            text-align: center;
+            background-color: #f1f1f1;
+            padding: 1rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Snacks</h1>
+        <p>Delicious snacks to satisfy your cravings</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="fruits.html">Fruits</a>
+        <a href="vegetables.html">Vegetables</a>
+        <a href="dairy.html">Dairy Products</a>
+        <a href="snacks.html">Snacks</a>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for snacks..." onkeyup="searchProducts()">
+        </div>
+        <div class="cart-icon" onclick="navigateToCart()">🛒 Cart</div>
+    </nav>
+
+    <div class="container">
+        <div class="card" data-name="Chips">
+            <img src="images/chips.jpg" alt="Chips">
+            <h3>Chips</h3>
+            <p>Crunchy and salty goodness.</p>
+            <div class="product-details">
+                <p><strong>Cost:</strong> $2.99</p>
+                <button class="add-to-cart" onclick="addToCart('Chips', 2.99)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="card" data-name="Cookies">
+            <img src="images/cookies.jpg" alt="Cookies">
+            <h3>Cookies</h3>
+            <p>Perfect for tea-time or on the go.</p>
+            <div class="product-details">
+                <p><strong>Cost:</strong> $4.49</p>
+                <button class="add-to-cart" onclick="addToCart('Cookies', 4.49)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="card" data-name="Lollipop">
+            <img src="images/lollipop.jpg" alt="Lollipop">
+            <h3>Lollipop</h3>
+            <p>Sweet, colorful, and fun for all ages.</p>
+            <div class="product-details">
+                <p><strong>Cost:</strong> $0.99</p>
+                <button class="add-to-cart" onclick="addToCart('Lollipop', 0.99)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="card" data-name="Candies">
+            <img src="images/candies.jpg" alt="Candies">
+            <h3>Candies</h3>
+            <p>Small treats packed with flavor.</p>
+            <div class="product-details">
+                <p><strong>Cost:</strong> $1.49</p>
+                <button class="add-to-cart" onclick="addToCart('Candies', 1.49)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="card" data-name="Sour Candies">
+            <img src="images/sour candies.jpeg" alt="Sour Candies">
+            <h3>Sour Candies</h3>
+            <p>Tangy and exciting bursts of flavor.</p>
+            <div class="product-details">
+                <p><strong>Cost:</strong> $1.99</p>
+                <button class="add-to-cart" onclick="addToCart('Sour Candies', 1.99)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="card" data-name="Ice Cream">
+            <img src="images/ice-cream.jpg" alt="Ice Cream">
+            <h3>Ice Cream</h3>
+            <p>A creamy delight in every scoop.</p>
+            <div class="product-details">
+                <p><strong>Cost:</strong> $5.99</p>
+                <button class="add-to-cart" onclick="addToCart('Ice Cream', 5.99)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="card" data-name="Diary Milk">
+            <img src="images/diary milk.jpg" alt="Diary Milk">
+            <h3>Diary Milk</h3>
+            <p>Rich chocolate with a creamy taste.</p>
+            <div class="product-details">
+                <p><strong>Cost:</strong> $2.99</p>
+                <button class="add-to-cart" onclick="addToCart('Diary Milk', 2.99)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="card" data-name="Kinder Joy">
+            <img src="images/kinder joy.jpg" alt="Kinder Joy">
+            <h3>Kinder Joy</h3>
+            <p>A delightful chocolate treat with a toy inside.</p>
+            <div class="product-details">
+                <p><strong>Cost:</strong> $1.99</p>
+                <button class="add-to-cart" onclick="addToCart('Kinder Joy', 1.99)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="card" data-name="KitKat">
+            <img src="images/kitkat.jpg" alt="KitKat">
+            <h3>KitKat</h3>
+            <p>Crispy wafer covered in smooth chocolate.</p>
+            <div class="product-details">
+                <p><strong>Cost:</strong> $2.49</p>
+                <button class="add-to-cart" onclick="addToCart('KitKat', 2.49)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="card" data-name="chocolate">
+            <img src="images/chocolate.jpg" alt="chocolate">
+            <h3>chocolate</h3>
+            <p>Rich chocolate with a creamy taste.</p>
+            <div class="product-details">
+                <p><strong>Cost:</strong> $3.99</p>
+                <button class="add-to-cart" onclick="addToCart('chocolate', 3.99)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="card" data-name="ferrero">
+            <img src="images/ferrero.jpg" alt="ferrero">
+            <h3>ferrero</h3>
+            <p>Rich chocolate with a creamy taste.</p>
+            <div class="product-details">
+                <p><strong>Cost:</strong> $4.99</p>
+                <button class="add-to-cart" onclick="addToCart('ferrero', 4.99)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="card" data-name="dark chocolate">
+            <img src="images/dark chocolate.jpg" alt="dark chocolate">
+            <h3>Dark chocolate</h3>
+            <p>Rich chocolate with a creamy taste.</p>
+            <div class="product-details">
+                <p><strong>Cost:</strong> $3.99</p>
+                <button class="add-to-cart" onclick="addToCart('dark chocolate', 3.99)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="card" data-name="marie golg">
+            <img src="images/marie.jpg" alt="marie">
+            <h3>marie gold</h3>
+            <p>Rich mari gold with a crunchi taste.</p>
+            <div class="product-details">
+                <p><strong>Cost:</strong> $2.99</p>
+                <button class="add-to-cart" onclick="addToCart('marie gold', 2.99)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="card" data-name="Nuts">
+            <img src="images/nuts.jpg" alt="nuts">
+            <h3>Nuts</h3>
+            <p>Rich nutrients with a healthy and taste.</p>
+            <div class="product-details">
+                <p><strong>Cost:</strong> $5.99</p>
+                <button class="add-to-cart" onclick="addToCart('Nuts', 5.99)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="card" data-name="Popcorn">
+            <img src="images/popcorn.jpg" alt="Popcorn">
+            <h3>Popcorn</h3>
+            <p>Salty and sweet popcorn.</p>
+            <div class="product-details">
+                <p><strong>Cost:</strong> $3.99</p>
+                <button class="add-to-cart" onclick="addToCart('Popcorn', 3.99)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script>
+        // Retrieve cart from localStorage or initialize an empty cart
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Function to add items to the cart
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(name + ' has been added to your cart!');
+        }
+
+        // Function to navigate to the cart page
+        function navigateToCart() {
+            window.location.href = 'cart.html';
+        }
+
+        // Function to filter products based on search input
+        function searchProducts() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let products = document.querySelectorAll('.card');
+            products.forEach(function (product) {
+                let name = product.getAttribute('data-name').toLowerCase();
+                if (name.includes(input)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+    <footer>
+        <p>&copy; 2024 Snacks Store</p>
+    </footer>
+
+    
+</body>
+</html>

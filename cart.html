@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background: url('images/bgi2.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 20px;
+            color: white;
+        }
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 15px;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        td {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #c82333;
+        }
+        #clearCart {
+            background-color: #ffc107;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        #clearCart:hover {
+            background-color: #e0a800;
+        }
+        #totalContainer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 24px;
+            margin-top: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 15px;
+        }
+        #buyNowBtn {
+            background-color: #007bff;
+            font-size: 18px;
+        }
+        #buyNowBtn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Cart</h1>
+    <table id="cartTable">
+        <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="cartBody">
+        </tbody>
+    </table>
+
+    <div id="totalContainer">
+        <span>Total: $<span id="totalPrice">0</span></span>
+        <button id="buyNowBtn" onclick="buyNow()">Buy Now</button>
+    </div>
+    <button id="clearCart" onclick="clearCart()">Add Items</button>
+
+    <script>
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartBody = document.getElementById('cartBody');
+            const totalPrice = document.getElementById('totalPrice');
+
+            cartBody.innerHTML = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                if (!item.quantity || item.quantity < 1) {
+                    item.quantity = 1;
+                }
+                total += item.price * item.quantity;
+
+                const row = `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>$${item.price}</td>
+                        <td>
+                            <button onclick="updateQuantity(${index}, -1)">-</button>
+                            ${item.quantity}
+                            <button onclick="updateQuantity(${index}, 1)">+</button>
+                        </td>
+                        <td>$${(item.price * item.quantity).toFixed(2)}</td>
+                        <td><button onclick="removeItem(${index})">Remove</button></td>
+                    </tr>
+                `;
+                cartBody.insertAdjacentHTML('beforeend', row);
+            });
+
+            totalPrice.textContent = total.toFixed(2);
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function updateQuantity(index, change) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const item = cart[index];
+            item.quantity += change;
+            if (item.quantity < 1) item.quantity = 1;
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        function removeItem(index) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        function clearCart() {
+            window.location.href = 'products.html';
+        }
+
+        function buyNow() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length > 0) {
+                window.location.href = 'pay.html';
+            } else {
+                alert('Your cart is empty!');
+            }
+        }
+
+        window.onload = loadCart;
+    </script>
+</body>
+</html>

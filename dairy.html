@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snacks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color:  #00fbff;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-image: url('images/bgdp.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+        h1 {
+            margin: 0;
+        }
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .search-bar {
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .search-bar input {
+            padding: 5px;
+            font-size: 16px;
+            width: 200px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .cart-icon {
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px;
+            color: white;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            padding: 15px;
+        }
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-bottom: 1px solid #ddd;
+        }
+        .card h3 {
+            margin: 10px 0;
+            color: #333;
+        }
+        .card p {
+            color: #666;
+            font-size: 14px;
+        }
+        .card .price {
+            font-weight: bold;
+            color: #ff5722;
+            margin-top: 5px;
+        }
+        .card button {
+            background-color: #ff5722;
+            color: white;
+            padding: 8px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .card button:hover {
+            background-color: #ff3d00;
+        }
+        .cart-popup {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -4px 0 6px rgba(0, 0, 0, 0.1);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .cart-popup.open {
+            transform: translateX(0);
+        }
+        .cart-popup h2 {
+            margin-top: 0;
+        }
+        .cart-popup .cart-item {
+            margin-bottom: 10px;
+        }
+        .cart-popup .cart-item p {
+            margin: 0;
+        }
+        .cart-popup .total-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ff5722;
+            margin-top: 20px;
+        }
+        footer {
+            text-align: center;
+            background-color: #f1f1f1;
+            padding: 1rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dairy products</h1>
+        <p>Delicious fresh and tasty dairy products</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="fruits.html">Fruits</a>
+        <a href="vegetables.html">Vegetables</a>
+        <a href="dairy.html">Dairy Products</a>
+        <a href="snacks.html">Snacks</a>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for snacks..." onkeyup="searchProducts()">
+        </div>
+        <div class="cart-icon" onclick="navigateToCart()">🛒 Cart</div>
+    </nav>
+
+    <div class="container" id="productsContainer">
+        <div class="card" data-name="milk" data-price="2.50">
+            <img src="images/milk.jpg" alt="Milk">
+            <h3>Milk</h3>
+            <p>A complete source of calcium and protein.</p>
+            <p class="price">Price: $2.50/kg</p>
+            <button   onclick="addToCart('milk', 2.50)">Add to Cart</button>
+        </div>
+        <div class="card" data-name="cheese" data-price="5.00">
+            <img src="images/cheese.jpg" alt="Cheese">
+            <h3>Cheese</h3>
+            <p>Rich in flavor and essential nutrients.</p>
+            <p class="price">Price: $5.00/kg</p>
+            <button   onclick="addToCart('cheese', 5.00)">Add to Cart</button>
+        </div>
+        <div class="card" data-name="yogurt" data-price="1.50">
+            <img src="images/yogurt.jpg" alt="Yogurt">
+            <h3>Yogurt</h3>
+            <p>Good for digestion and gut health.</p>
+            <p class="price">Price: $1.50/kg</p>
+            <button   onclick="addToCart('yogurt', 1.50)">Add to Cart</button>
+        </div>
+        <div class="card" data-name="butter" data-price="3.00">
+            <img src="images/butter.jpg" alt="Butter">
+            <h3>Butter</h3>
+            <p>A creamy delight for every dish.</p>
+            <p class="price">Price: $3.00/kg</p>
+            <button   onclick="addToCart('butter', 3.00)">Add to Cart</button>
+        </div>
+        <div class="card" data-name="cream" data-price="2.80">
+            <img src="images/cream.jpg" alt="Cream">
+            <h3>Cream</h3>
+            <p>Perfect for desserts and cooking.</p>
+            <p class="price">Price: $2.80/kg</p>
+            <button   onclick="addToCart('cream', 2.80)">Add to Cart</button>
+        </div>
+        <div class="card" data-name="paneer" data-price="4.50">
+            <img src="images/paneer.jpg" alt="Paneer">
+            <h3>Paneer</h3>
+            <p>Soft and nutritious for all meals.</p>
+            <p class="price">Price: $4.50/kg</p>
+            <button   onclick="addToCart('paneer', 4.50)">Add to Cart</button>
+        </div>        
+
+
+
+        <div class="card" data-name="kefir" data-price="3.00">
+            <img src="images/kefir.jpg" alt="Kefir">
+            <h3>Kefir</h3>
+            <p>A fermented drink loaded with probiotics.</p>
+            <p class="price">Price: $3.00/kg</p>
+            <button   onclick="addToCart('kefir', 3.00)">Add to Cart</button>
+        </div>
+        <div class="card" data-name="whipped-cream" data-price="2.20">
+            <img src="images/whipped-cream.jpg" alt="Whipped Cream">
+            <h3>Whipped Cream</h3>
+            <p>Perfect for topping desserts.</p>
+            <p class="price">Price: $2.20/kg</p>
+            <button   onclick="addToCart('whipped-cream', 2.20)">Add to Cart</button>
+        </div>
+        <div class="card" data-name="cottage-cheese" data-price="3.50">
+            <img src="images/cottage-cheese.jpg" alt="Cottage Cheese">
+            <h3>Cottage Cheese</h3>
+            <p>High in protein and low in fat.</p>
+            <p class="price">Price: $3.50/kg</p>
+            <button   onclick="addToCart('cottage-cheese', 3.50)">Add to Cart</button>
+        </div>
+        <div class="card" data-name="milkshake" data-price="1.80">
+            <img src="images/milkshake.jpg" alt="Milkshake">
+            <h3>Milkshake</h3>
+            <p>A sweet and refreshing drink.</p>
+            <p class="price">Price: $1.80/kg</p>
+            <button   onclick="addToCart('milkshake', 1.80)">Add to Cart</button>
+        </div>
+        <div class="card" data-name="ghee" data-price="7.00">
+            <img src="images/ghee.jpg" alt="Ghee">
+            <h3>Ghee</h3>
+            <p>Clarified butter with rich aroma.</p>
+            <p class="price">Price: $7.00/kg</p>
+            <button   onclick="addToCart('ghee', 7.00)">Add to Cart</button>
+        </div>
+        <div class="card" data-name="condensed-milk" data-price="2.60">
+            <img src="images/condensed-milk.jpg" alt="Condensed Milk">
+            <h3>Condensed Milk</h3>
+            <p>Sweetened milk for desserts.</p>
+            <p class="price">Price: $2.60/kg</p>
+            <button   onclick="addToCart('condensed-milk', 2.60)">Add to Cart</button>
+        </div>
+    </div>
+    
+    
+    <div class="cart-popup" id="cartPopup">
+        <h2>Your Cart</h2>
+        <div id="cartItems"></div>
+        <p class="total-price">Total: $<span id="totalPrice">0.00</span></p>
+    </div>
+
+    <footer>
+        &copy; 2024 Groceries Store. All rights reserved.
+    </footer>
+
+    <script>
+        // Retrieve cart from localStorage or initialize an empty cart
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Function to add items to the cart
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(name + ' has been added to your cart!');
+        }
+
+        // Function to navigate to the cart page
+        function navigateToCart() {
+            window.location.href = 'cart.html';
+        }
+
+        // Function to filter products based on search input
+        function searchProducts() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let products = document.querySelectorAll('.card');
+            products.forEach(function (product) {
+                let name = product.getAttribute('data-name').toLowerCase();
+                if (name.includes(input)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Sign Up</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background: url('images/bgi2.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+            color: #6dd5ed;
+        }
+        .container {
+            width: 400px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h2 {
+            font-size: 28px;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        /* Form Styling */
+        .form-container {
+            display: none;
+        }
+
+        .form-container.active {
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #007BFF;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #007BFF;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .toggle-btn {
+            margin-top: 15px;
+        }
+
+        .toggle-btn a {
+            color: #007BFF;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .toggle-btn a:hover {
+            color: #0056b3;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 450px) {
+            .container {
+                width: 90%;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        
+    </nav>
+
+    <!-- Container for Forms -->
+    <div class="container">
+        <!-- Login Form -->
+        <div id="loginForm" class="form-container active">
+            <h2>Welcome Back!</h2>
+            <form>
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <!-- Login Button Redirects to offers.html -->
+                <button type="button" onclick="redirectToOffers()">Login</button>
+            </form>
+            <div class="toggle-btn">
+                Don't have an account? <a onclick="toggleForm()">Sign Up</a>
+            </div>
+        </div>
+
+        <!-- Sign-Up Form -->
+        <div id="signUpForm" class="form-container">
+            <h2>Create an Account</h2>
+            <form>
+                <input type="text" id="signUpName" placeholder="Full Name" required>
+                <input type="email" id="signUpEmail" placeholder="Email" required>
+                <input type="text" id="signUpUsername" placeholder="Username" required>
+                <input type="password" id="signUpPassword" placeholder="Password" required>
+                <input type="tel" id="signUpPhone" placeholder="Phone Number" pattern="[0-9]{10}" required>
+                <!-- Sign-Up Button -->
+                <button type="submit">Sign Up</button>
+            </form>
+            <div class="toggle-btn">
+                Already have an account? <a onclick="toggleForm()">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Function to toggle between Login and Sign-Up forms
+        function toggleForm() {
+            const loginForm = document.getElementById('loginForm');
+            const signUpForm = document.getElementById('signUpForm');
+
+            // Toggle active classes
+            loginForm.classList.toggle('active');
+            signUpForm.classList.toggle('active');
+        }
+
+        // Function to redirect to the Offers page
+        function redirectToOffers() {
+            window.location.href = "offers.html";
+        }
+    </script>
+</body>
+</html>

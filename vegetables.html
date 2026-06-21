@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vegetables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: hsl(112, 47%, 64%);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-image: url('images/bgveg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        h1 {
+            margin: 0;
+            font-size: 3rem;
+        }
+        p {
+            font-size: 1.2rem;
+        }
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .search-bar {
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .search-bar input {
+            padding: 8px;
+            font-size: 16px;
+            width: 250px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .cart-icon {
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px;
+            color: white;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            padding: 15px;
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #ddd;
+        }
+        .card h3 {
+            margin: 10px 0;
+            color: #333;
+        }
+        .card p {
+            color: #666;
+            font-size: 14px;
+        }
+        .card .price {
+            font-weight: bold;
+            color: #28a745;
+            margin-top: 5px;
+        }
+        .card button {
+            background-color: #28a745;
+            color: white;
+            padding: 8px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .card button:hover {
+            background-color: #218838;
+        }
+        footer {
+            text-align: center;
+            background-color: #f1f1f1;
+            padding: 1rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Vegetables</h1>
+        <p>Fresh and healthy vegetables just for you</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="fruits.html">Fruits</a>
+        <a href="vegetables.html">Vegetables</a>
+        <a href="dairy.html">Dairy Products</a>
+        <a href="snacks.html">Snacks</a>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for vegetables..." onkeyup="searchProducts()">
+        </div>
+        <div class="cart-icon" onclick="navigateToCart()">🛒 Cart</div>
+    </nav>
+
+    <div class="container">
+        <div class="card" data-name="Tomato">
+            <img src="images/tomato.jpg" alt="Tomato">
+            <h3>Tomato</h3>
+            <p>Fresh and juicy tomatoes for your dishes.</p>
+            <p class="price">$1.20 per lb</p>
+            <button class="add-to-cart" onclick="addToCart('Tomato', 1.20)">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Cabbage">
+            <img src="images/cabbage.jpg" alt="Cabbage">
+            <h3>Cabbage</h3>
+            <p>Healthy and fresh cabbage for salads.</p>
+            <p class="price">$0.99 per lb</p>
+            <button class="add-to-cart" onclick="addToCart('Cabbage', 0.99)">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Carrot">
+            <img src="images/carrot.jpg" alt="Carrot">
+            <h3>Carrot</h3>
+            <p>Crunchy and sweet carrots, full of nutrients.</p>
+            <p class="price">$1.50 per lb</p>
+            <button class="add-to-cart" onclick="addToCart('Carrot', 1.50)">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Potato">
+            <img src="images/potato.jpg" alt="Potato">
+            <h3>Potato</h3>
+            <p>Versatile potatoes for your recipes.</p>
+            <p class="price">$0.80 per lb</p>
+            <button class="add-to-cart" onclick="addToCart('Potato', 0.80)">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Onion">
+            <img src="images/onion.jpg" alt="Onion">
+            <h3>Onion</h3>
+            <p>Flavorful onions, perfect for cooking.</p>
+            <p class="price">$1.10 per lb</p>
+            <button class="add-to-cart" onclick="addToCart('Onion', 1.10)">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Red Chilli">
+            <img src="images/red chilli.jpg" alt="Red Chilli">
+            <h3>Red Chilli</h3>
+            <p>Spicy red chillies to heat up your meals.</p>
+            <p class="price">$2.30 per lb</p>
+            <button class="add-to-cart" onclick="addToCart('Red Chilli', 2.30)">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Capsicum">
+            <img src="images/capsicum.jpg" alt="Capsicum">
+            <h3>Capsicum</h3>
+            <p>Bright and crunchy capsicums for a fresh taste.</p>
+            <p class="price">$1.90 per lb</p>
+            <button class="add-to-cart" onclick="addToCart('Capsicum', 1.90)">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Beetroot">
+            <img src="images/beetroot.jpg" alt="Beetroot">
+            <h3>Beetroot</h3>
+            <p>Rich and earthy beetroots, perfect for salads.</p>
+            <p class="price">$1.70 per lb</p>
+            <button class="add-to-cart" onclick="addToCart('Beetroot', 1.70)">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Spinach">
+            <img src="images/spinach.jpg" alt="Spinach">
+            <h3>Spinach</h3>
+            <p>Fresh and nutrient-rich spinach leaves.</p>
+            <p class="price">$1.40 per lb</p>
+            <button class="add-to-cart" onclick="addToCart('Spinach', 1.40)">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Green Chilli">
+            <img src="images/green chilli.jpg" alt="Green Chilli">
+            <h3>Green Chilli</h3>
+            <p>Fiery green chillies for spicy lovers.</p>
+            <p class="price">$1.80 per lb</p>
+            <button class="add-to-cart" onclick="addToCart('Green Chilli', 1.80)">Add to Cart</button>
+        </div>
+        <div class="card" data-name="Radish">
+            <img src="images/radish.jpg" alt="Radish">
+            <h3>Radish</h3>
+            <p>Crunchy and fresh radishes for your meals.</p>
+            <p class="price">$1.20 per lb</p>
+            <button class="add-to-cart" onclick="addToCart('Radish', 1.20)">Add to Cart</button>
+        </div>
+        <div class="card" data-name="cauliflower">
+            <img src="images/cauliflowers.jpg" alt="cauliflower">
+            <h3>cauliflower</h3>
+            <p>Healthy and fresh cauliflower for salads.</p>
+            <p class="price">$0.99 per lb</p>
+            <button class="add-to-cart" onclick="addToCart('cauliflower', 0.99)">Add to Cart</button>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Grocery Store - Freshness Delivered
+    </footer>
+    <script>
+        // Retrieve cart from localStorage or initialize an empty cart
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Function to add items to the cart
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(name + ' has been added to your cart!');
+        }
+
+        // Function to navigate to the cart page
+        function navigateToCart() {
+            window.location.href = 'cart.html';
+        }
+
+        // Function to filter products based on search input
+        function searchProducts() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let products = document.querySelectorAll('.card');
+            products.forEach(function (product) {
+                let name = product.getAttribute('data-name').toLowerCase();
+                if (name.includes(input)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
